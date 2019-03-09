@@ -3,6 +3,7 @@
 	"version": 2,
 	"builds": [
 		{ "src": "www/package.json", "use": "@now/next" },
+		{ "src": "nextjs-starter/package.json", "use": "@now/next" },
 		{ "src": "api/go/*.go", "use": "@now/go" },
 		{ "src": "api/python/*.py", "use": "@now/python" },
 		{ "src": "api/php/*.php", "use": "@now/php" },
@@ -23,6 +24,13 @@
 		{
 			"src": "/(.*)",
 			"dest": "/www/$1",
+			"headers": {
+				"x-request-path": "$1"
+			}
+		},
+		{
+			"src": "starter/(.*)",
+			"dest": "/nextjs-starter/$1",
 			"headers": {
 				"x-request-path": "$1"
 			}
